@@ -72,6 +72,7 @@ By providing insights into metrics such as 'Total Loan Applications,' 'Total Fun
 
  ## Business Impacts 
 This project empowered stakeholders at the Bank of Michigan to gain a clearer understanding of their loan portfolio performance and borrower behavior. The insights from this project supported: 
+
 `A more strategic allocation of funds toward low-risk loan categories`
 
 `Improved early identification of high-risk loans using DTI and verification status`
