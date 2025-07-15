@@ -2,6 +2,7 @@
 ## Business Objective
 The goal of this project is to help Bank of Michigan improve lending performance, portfolio health, and risk management by analyzing detailed bank loan data. By using structured SQL queries a dynamic Tableau dashboard, the analysis uncovers trends in loan applications, funded amounts, repayment behavior, interest rates, and borrower profiles. Key insights include monthly and state-wise loan distribution, good vs. bad loan percentages, and payment collection patterns. These findings enable the bank to make data-driven decisions on credit risk assessment, customer targeting, and loan product design - ensuring more effective lending strategies and stronger financial outcomes in a competitive financial services market.
 
+View my Tableau Dashboard: [2021 Bank Loan Datasset](https://public.tableau.com/views/BankLoanWorkbook_Incomplete/Details?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 ## About the data 
 The dataset was obtained from the Bank Loan dataset available from [2021 Bank of Michigan Loan Data](https://drive.google.com/file/d/1WNlzRVDZ2rKdiwpGUFBSuGA50EsI-j2v/view?usp=sharing). It contains detailed loan information for Bank of Michigan, covering all details of loan applications in 2021. The data includes 14 columns and over 38,000 rows:
 
