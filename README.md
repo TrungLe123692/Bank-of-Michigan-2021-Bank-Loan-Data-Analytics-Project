@@ -58,7 +58,7 @@ By providing insights into metrics such as 'Total Loan Applications,' 'Total Fun
 
 `Details Analysis:` Providing a consolidated view of all the essential information within our loan data. This Details Dashboard aims to offer a holistic snapshot of key loan-related metrics and data points, enabling users to access critical information efficiently.
 
-## The Following Actons for This Project 
+## The Following Actions for This Project 
 `Importing Data:` Moved outside data into a system or database so that it might be used for the project.
 
 `Creating Database:` To effectively store, manage, and retrieve data, set up a structured system.
