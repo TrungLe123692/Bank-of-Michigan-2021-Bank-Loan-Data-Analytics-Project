@@ -42,24 +42,7 @@ As a financial institution, Bank of Michigan seeks to better understand the perf
 
 ---
 
-## 3. Data Architecture Overview
-
-This ETL pipeline follows a structured 3-layer architecture:
-
-### 🔄 Workflow Stages
-
-1. **Extract**  
-   Raw loan data loaded from `.csv` into SQL and Excel for preliminary cleaning
-
-2. **Transform**  
-   SQL queries calculate KPIs, clean missing values, group by attributes like state, term, DTI, loan status
-
-3. **Load**  
-   Final results are visualized via Tableau to deliver decision-ready dashboards
-
----
-
-## 4. Dataset & Schema
+## 3. Dataset & Schema
 
 The dataset includes loan applications from 2021, with **14 columns and 38,000+ rows**. Each row represents a unique loan application with borrower details and financial metrics.
 
@@ -82,6 +65,91 @@ The dataset includes loan applications from 2021, with **14 columns and 38,000+ 
 | `emp_length`     | Employment length of the borrower                 |
 | `purpose`        | Purpose of the loan (e.g., credit card, home)     |
 | `home_ownership` | Type of home ownership (e.g., Rent, Mortgage)     |
+
+---
+
+## 4. Data Architecture Overview
+## 🔄 ETL Workflow
+
+This project follows a robust ETL (Extract, Transform, Load) pipeline to process raw bank loan data and convert it into actionable insights. The workflow was built using Excel (Power Query), SQL (SQLite), and Tableau, and demonstrates skills in data profiling, cleaning, KPI creation, and dashboard development.
+
+### 4.1. 🛠️ Extract
+
+Raw data was ingested from `.csv` files and loaded into both Excel and SQL environments for initial processing:
+
+- **Excel (Power Query):**
+  - Performed initial **data profiling** using built-in tools to identify missing values, outliers, and inconsistencies
+  - Applied data cleansing techniques including:
+    - Removal of empty or null-heavy rows
+    - Type conversion checks (e.g., ensuring numeric columns were not read as text)
+    - Filtering out invalid records (e.g., loans with zero term or missing borrower ID)
+  - Created intermediate summary tables to validate row counts and distribution across variables like loan term and status
+
+- **SQL (SQLite):**
+  - Imported cleaned `.csv` files using `sqlite3` CLI and Python scripts
+  - Created **normalized relational schemas** using `CREATE TABLE`, assigning appropriate data types (`INTEGER`, `REAL`, `TEXT`, `DATE`)
+  - Established **primary keys** and **foreign key relationships** to ensure referential integrity
+  - Used `PRAGMA` statements to validate schema integrity and indexing
+
+---
+
+### 4.2. 🔍 Transform
+
+The transformation stage involved substantial SQL scripting to prepare the data for analytical consumption:
+
+- **Data Cleaning & Standardization:**
+  - Used `COALESCE()` to replace `NULL` values with fallback values
+  - Applied `CASE WHEN` logic to normalize inconsistent entries in `loan_status`, `grade`, and `employment_length`
+  - Used `TRIM()`, `UPPER()`, and `SUBSTR()` to clean up text fields (e.g., state abbreviations, purpose descriptions)
+
+- **KPI Derivation:**
+  - Calculated key business metrics including:
+    - **Default Rate:**  
+      `SUM(CASE WHEN loan_status = 'Default' THEN 1 ELSE 0 END) * 1.0 / COUNT(*)`
+    - **Average Loan Amount by Term and Grade:**  
+      Aggregated using `GROUP BY term, grade`
+    - **Debt-to-Income (DTI) Risk Bands:**  
+      Bucketed using `CASE` logic for high/medium/low categories
+
+- **Feature Engineering:**
+  - Created derived fields such as:
+    - `loan_age` (based on issue date)
+    - `monthly_installment` (calculated using interest rate, amount, and term)
+  - Built temporary views to simplify multi-step calculations and join logic
+
+- **Aggregations & Segmentations:**
+  - Used nested subqueries and `CTE`s (Common Table Expressions) for layered transformations
+  - Grouped data by borrower attributes (e.g., credit grade, employment length) for cohort analysis
+  - Created final summary tables to feed Tableau dashboards
+
+---
+
+### 4.3. 📊 Load
+
+The final transformed dataset was loaded into **Tableau Desktop** for dynamic and interactive data visualization:
+
+- **Data Connection:**
+  - Connected Tableau to `.csv` outputs from SQL or directly via live connection to SQLite database
+  - Verified data integrity by comparing row counts and key metrics to SQL output
+
+- **Dashboard Development:**
+  - Built multi-sheet dashboards featuring:
+    - **Filled maps** to show default rates by state
+    - **Stacked bar charts** for loan distributions by term and grade
+    - **Scatter plots** for interest rate vs. loan amount
+    - **Donut charts** to visualize loan status ratios
+    - **KPI cards** for total loan volume, default rate, and average interest rate
+  - Incorporated **parameters** and **interactive filters** for:
+    - Loan term
+    - Credit grade
+    - Issue year
+    - State
+
+- **Performance Optimization:**
+  - Used Tableau **LOD (Level of Detail) expressions** to preserve KPI accuracy across filters
+  - Minimized data bloat by filtering unused columns and pre-aggregating in SQL
+
+> This end-to-end ETL pipeline demonstrates proficiency in structured data handling, KPI engineering, and storytelling with dashboards — transforming raw financial data into actionable credit risk insights.
 
 ---
 
@@ -285,3 +353,32 @@ FROM bank.loan_data
 GROUP BY home_ownership
 ORDER BY home_ownership;
 ```
+## 6. 📊 Tableau Dashboard Design
+
+- **Loan Default Rate by State (Filled Map):**  
+  Highlights geographic trends in default risk, enabling regional risk assessments.
+
+- **Loan Distribution by Term and Grade (Stacked Column Chart):**  
+  Compares loan volumes across different term lengths and credit grades.
+
+- **Average Loan Amount by DTI Group (Bar Chart):**  
+  Identifies how debt-to-income ratios impact borrowing behavior and loan sizing.
+
+- **Interest Rate vs. Loan Amount (Scatter Plot):**  
+  Explores the relationship between loan pricing and principal amount by borrower profile.
+
+- **Loan Status Breakdown (Donut Chart):**  
+  Visualizes the proportion of fully paid, charged-off, and late loans for quick portfolio assessment.
+
+- **KPI Cards (Dynamic with Filters):**  
+  Key performance indicators such as total loan volume, average interest rate, and default rate, powered by Tableau calculations and responsive to user filters.
+
+- **Interactive Filters (State, Term, Grade, Year):**  
+  Let users drill down to specific borrower segments and time periods for focused analysis.
+
+  ## 📈 View the Interactive Dashboard
+
+[![View in Tableau Public](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/app/profile/trung.le6260/viz/BankLoanWorkbook_Incomplete/Overview)
+
+👉 **[Click here to explore the live Tableau dashboard](https://public.tableau.com/app/profile/trung.le6260/viz/BankLoanWorkbook_Incomplete/Overview)**  
+This dashboard visualizes key loan metrics such as default rates, average loan amounts, and risk segmentation by state, credit grade, and term. Interactive filters and KPI cards allow users to dynamically explore the portfolio from multiple perspectives.
