@@ -1,0 +1,16 @@
+bank-loan-analytics/
+│
+├── data/
+│ └── Bank of Michigan Bank Loan Data.csv
+│
+├── sql/
+│ └── Bank of Michigan Loan Analytics Project SQL Script.sql
+│
+├── visuals/
+│ └── loan-risk-dashboard.png
+│
+├── output/
+│ └── Bank Loan Data Analytics_SQL Queries.pdf
+│
+├── Bank Loan Risk Analytics.twbx
+├── README.md
