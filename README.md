@@ -64,9 +64,9 @@ The dataset includes loan applications from 2021, with **14 columns and 38,000+ 
 ---
 
 ## 4. Data Architecture Overview
-### ETL Workflow
 
-This project follows a robust ETL (Extract, Transform, Load) pipeline to process raw bank loan data and convert it into actionable insights. The workflow was built using Excel (Power Query), SQL (SQLite), and Tableau, and demonstrates skills in data profiling, cleaning, KPI creation, and dashboard development.
+### ETL Workflow
+> ✅ This project follows a robust ETL (Extract, Transform, Load) pipeline to process raw bank loan data and convert it into actionable insights. The workflow was built using Excel (Power Query), SQL (SQLite), and Tableau, and demonstrates skills in data profiling, cleaning, KPI creation, and dashboard development.
 
 ### 4.1. Extract
 
@@ -144,8 +144,6 @@ The final transformed dataset was loaded into **Tableau Desktop** for dynamic an
   - Used Tableau **LOD (Level of Detail) expressions** to preserve KPI accuracy across filters
   - Minimized data bloat by filtering unused columns and pre-aggregating in SQL
 
-> This end-to-end ETL pipeline demonstrates proficiency in structured data handling, KPI engineering, and storytelling with dashboards — transforming raw financial data into actionable credit risk insights.
-
 ---
 
 ## 5. Methodology & SQL Analysis
@@ -158,6 +156,8 @@ Structured SQL queries were written to:
 - Filter by time (MTD, PMTD) for near-real-time monitoring
 
 ### 5.1 KPI Summary
+
+> ✅ These SQL queries provided key performance metrics, tracking loan application volumes and funding amounts across current and prior months, as well as total payments collected.
 
 - **5.1.1 Total Loan Applications**
 ```sql
@@ -209,6 +209,8 @@ FROM bank.loan_data;
 
 ### 5.2. Interest Rate & DTI Metrics
 
+> ✅ These queries calculated average interest rates and debt-to-income ratios, enabling month-to-month comparisons and overall portfolio assessment.
+
 - **5.2.1. Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS Avg_Int_Rate 
@@ -238,6 +240,8 @@ FROM bank.loan_data;
 ---
 
 ### 5.3. Loan Quality Breakdown
+
+> ✅ These queries categorized loans by performance status, calculating good and bad loan percentages while providing comprehensive breakdowns of loan counts, payment amounts, funded amounts, interest rates, and debt-to-income ratios by status
 
 - **5.3.1. Good Loan Percentage**
 ```sql
@@ -273,6 +277,9 @@ GROUP BY loan_status;
 ---
 
 ### 5.4. Monthly Trend Report
+
+> ✅ This query analyzed monthly lending trends by aggregating loan applications, funded amounts, and received payments by issue date month.
+
 ```sql
 SELECT 
     MONTH(issue_date) AS Month_Number, 
@@ -289,6 +296,8 @@ ORDER BY MONTH(issue_date);
 
 ### 5.5. Loan Breakdown by Attributes
 
+> ✅ These queries segmented loan portfolio performance across key demographics (state, term, employment length, purpose, and home ownership), aggregating applications, funded amounts, and received payments for each attribute category.
+ 
 - **5.5.1. By State**
 ```sql
 SELECT 
