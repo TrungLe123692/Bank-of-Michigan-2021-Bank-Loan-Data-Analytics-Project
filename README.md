@@ -1,14 +1,9 @@
 # 🏦 Bank of Michigan 2021 Bank Loan Data Analytics  
-![Language](https://img.shields.io/badge/Language-SQL-blue)  
-![Visualization](https://img.shields.io/badge/Visualization-Tableau-purple)  
-![Status](https://img.shields.io/badge/Project-Completed-brightgreen)  
-![Data](https://img.shields.io/badge/Data-BankLoan-orange)
-
-> A data analytics and visualization project using SQL and Tableau to uncover trends in lending performance, borrower risk, and portfolio health.
+![Language](https://img.shields.io/badge/Language-SQL-blue)  ![Visualization](https://img.shields.io/badge/Visualization-Tableau-purple)  ![Status](https://img.shields.io/badge/Project-Completed-brightgreen)  ![Data](https://img.shields.io/badge/Data-BankLoan-orange)
 
 ---
 
-## 1. Overview
+## 1. Project Overview
 
 This project analyzes over **38,000 loan applications** from the Bank of Michigan to evaluate approval trends, repayment patterns, and loan quality. The end-to-end workflow includes:
 
@@ -69,15 +64,15 @@ The dataset includes loan applications from 2021, with **14 columns and 38,000+ 
 ---
 
 ## 4. Data Architecture Overview
-## 🔄 ETL Workflow
+### ETL Workflow
 
 This project follows a robust ETL (Extract, Transform, Load) pipeline to process raw bank loan data and convert it into actionable insights. The workflow was built using Excel (Power Query), SQL (SQLite), and Tableau, and demonstrates skills in data profiling, cleaning, KPI creation, and dashboard development.
 
-### 4.1. 🛠️ Extract
+### 4.1. Extract
 
 Raw data was ingested from `.csv` files and loaded into both Excel and SQL environments for initial processing:
 
-- **Excel (Power Query):**
+- **4.1.1. Excel (Power Query):**
   - Performed initial **data profiling** using built-in tools to identify missing values, outliers, and inconsistencies
   - Applied data cleansing techniques including:
     - Removal of empty or null-heavy rows
@@ -85,7 +80,7 @@ Raw data was ingested from `.csv` files and loaded into both Excel and SQL envir
     - Filtering out invalid records (e.g., loans with zero term or missing borrower ID)
   - Created intermediate summary tables to validate row counts and distribution across variables like loan term and status
 
-- **SQL (SQLite):**
+- **4.1.2. SQL (SQLite):**
   - Imported cleaned `.csv` files using `sqlite3` CLI and Python scripts
   - Created **normalized relational schemas** using `CREATE TABLE`, assigning appropriate data types (`INTEGER`, `REAL`, `TEXT`, `DATE`)
   - Established **primary keys** and **foreign key relationships** to ensure referential integrity
@@ -93,16 +88,16 @@ Raw data was ingested from `.csv` files and loaded into both Excel and SQL envir
 
 ---
 
-### 4.2. 🔍 Transform
+### 4.2. Transform
 
 The transformation stage involved substantial SQL scripting to prepare the data for analytical consumption:
 
-- **Data Cleaning & Standardization:**
+- **4.2.1 Data Cleaning & Standardization:**
   - Used `COALESCE()` to replace `NULL` values with fallback values
   - Applied `CASE WHEN` logic to normalize inconsistent entries in `loan_status`, `grade`, and `employment_length`
   - Used `TRIM()`, `UPPER()`, and `SUBSTR()` to clean up text fields (e.g., state abbreviations, purpose descriptions)
 
-- **KPI Derivation:**
+- **4.2.2. KPI Derivation:**
   - Calculated key business metrics including:
     - **Default Rate:**  
       `SUM(CASE WHEN loan_status = 'Default' THEN 1 ELSE 0 END) * 1.0 / COUNT(*)`
@@ -111,13 +106,13 @@ The transformation stage involved substantial SQL scripting to prepare the data 
     - **Debt-to-Income (DTI) Risk Bands:**  
       Bucketed using `CASE` logic for high/medium/low categories
 
-- **Feature Engineering:**
+- **4.2.3. Feature Engineering:**
   - Created derived fields such as:
     - `loan_age` (based on issue date)
     - `monthly_installment` (calculated using interest rate, amount, and term)
   - Built temporary views to simplify multi-step calculations and join logic
 
-- **Aggregations & Segmentations:**
+- **4.2.4. Aggregations & Segmentations:**
   - Used nested subqueries and `CTE`s (Common Table Expressions) for layered transformations
   - Grouped data by borrower attributes (e.g., credit grade, employment length) for cohort analysis
   - Created final summary tables to feed Tableau dashboards
@@ -128,11 +123,11 @@ The transformation stage involved substantial SQL scripting to prepare the data 
 
 The final transformed dataset was loaded into **Tableau Desktop** for dynamic and interactive data visualization:
 
-- **Data Connection:**
+- **4.3.1. Data Connection:**
   - Connected Tableau to `.csv` outputs from SQL or directly via live connection to SQLite database
   - Verified data integrity by comparing row counts and key metrics to SQL output
 
-- **Dashboard Development:**
+- **4.3.2. Dashboard Development:**
   - Built multi-sheet dashboards featuring:
     - **Filled maps** to show default rates by state
     - **Stacked bar charts** for loan distributions by term and grade
@@ -145,7 +140,7 @@ The final transformed dataset was loaded into **Tableau Desktop** for dynamic an
     - Issue year
     - State
 
-- **Performance Optimization:**
+- **4.3.3. Performance Optimization:**
   - Used Tableau **LOD (Level of Detail) expressions** to preserve KPI accuracy across filters
   - Minimized data bloat by filtering unused columns and pre-aggregating in SQL
 
@@ -162,49 +157,49 @@ Structured SQL queries were written to:
 - Analyze impact of terms, DTI, purpose, and state on performance  
 - Filter by time (MTD, PMTD) for near-real-time monitoring
 
-## 🔹 KPI Summary
+### 5.1 KPI Summary
 
-### Total Loan Applications
+**5.1.1 Total Loan Applications**
 ```sql
 SELECT COUNT(id) AS Total_Applications 
 FROM bank.loan_data;
 ```
 
-### MTD Loan Applications
+**5.1.2 MTD Loan Applications**
 ```sql
 SELECT COUNT(id) AS Total_Applications 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 12;
 ```
 
-### PMTD Loan Applications
+**5.1.3. PMTD Loan Applications**
 ```sql
 SELECT COUNT(id) AS Total_Applications 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 11;
 ```
 
-### Total Funded Amount
+**5.1.4. Total Funded Amount**
 ```sql
 SELECT SUM(loan_amount) AS Total_Funded_Amount 
 FROM bank.loan_data;
 ```
 
-### MTD Funded Amount
+**5.1.5. MTD Funded Amount**
 ```sql
 SELECT SUM(loan_amount) AS Total_Funded_Amount 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 12;
 ```
 
-### PMTD Funded Amount
+**5.1.6. PMTD Funded Amount**
 ```sql
 SELECT SUM(loan_amount) AS Total_Funded_Amount 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 11;
 ```
 
-### Total Amount Received
+**5.1.7. Total Amount Received**
 ```sql
 SELECT SUM(total_payment) AS Total_Amount_Collected 
 FROM bank.loan_data;
@@ -212,29 +207,29 @@ FROM bank.loan_data;
 
 ---
 
-## 🔹 Interest Rate & DTI Metrics
+### 5.2. Interest Rate & DTI Metrics
 
-### Average Interest Rate
+**5.2.1. Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS Avg_Int_Rate 
 FROM bank.loan_data;
 ```
 
-### MTD Average Interest Rate
+**5.2.2. MTD Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS MTD_Avg_Int_Rate 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 12;
 ```
 
-### PMTD Average Interest Rate
+**5.2.3. PMTD Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS PMTD_Avg_Int_Rate 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 11;
 ```
 
-### Average DTI
+**5.2.4. Average DTI**
 ```sql
 SELECT AVG(dti)*100 AS Avg_DTI 
 FROM bank.loan_data;
@@ -242,9 +237,9 @@ FROM bank.loan_data;
 
 ---
 
-## 🔹 Loan Quality Breakdown
+### 5.3. Loan Quality Breakdown
 
-### Good Loan Percentage
+**5.3.1. Good Loan Percentage**
 ```sql
 SELECT
     (COUNT(CASE WHEN loan_status = 'Fully Paid' OR loan_status = 'Current' THEN id END) * 100.0) / 
@@ -252,7 +247,7 @@ SELECT
 FROM bank.loan_data;
 ```
 
-### Bad Loan Percentage
+**5.3.2. Bad Loan Percentage**
 ```sql
 SELECT
     (COUNT(CASE WHEN loan_status = 'Charged Off' THEN id END) * 100.0) / 
@@ -262,7 +257,7 @@ FROM bank.loan_data;
 
 ---
 
-## 🔹 Loan Status Summary
+**5.3.3. Loan Status Summary**
 ```sql
 SELECT
     loan_status,
@@ -277,7 +272,7 @@ GROUP BY loan_status;
 
 ---
 
-## 🔹 Monthly Trend Report
+### 5.4. Monthly Trend Report
 ```sql
 SELECT 
     MONTH(issue_date) AS Month_Number, 
@@ -292,9 +287,9 @@ ORDER BY MONTH(issue_date);
 
 ---
 
-## 🔹 Loan Breakdown by Attributes
+### 5.5. Loan Breakdown by Attributes
 
-### By State
+**5.5.1. By State**
 ```sql
 SELECT 
     address_state AS State, 
@@ -306,7 +301,7 @@ GROUP BY address_state
 ORDER BY address_state;
 ```
 
-### By Term
+**5.5.2. By Term**
 ```sql
 SELECT 
     term AS Term, 
@@ -318,7 +313,7 @@ GROUP BY term
 ORDER BY term;
 ```
 
-### By Employment Length
+**5.5.3.By Employment Length**
 ```sql
 SELECT 
     emp_length AS Employee_Length, 
@@ -330,7 +325,7 @@ GROUP BY emp_length
 ORDER BY emp_length;
 ```
 
-### By Purpose
+**5.5.4. By Purpose**
 ```sql
 SELECT 
     purpose AS PURPOSE, 
@@ -342,7 +337,7 @@ GROUP BY purpose
 ORDER BY purpose;
 ```
 
-### By Home Ownership
+**5.5.5. By Home Ownership**
 ```sql
 SELECT 
     home_ownership AS HomeOwnership, 
