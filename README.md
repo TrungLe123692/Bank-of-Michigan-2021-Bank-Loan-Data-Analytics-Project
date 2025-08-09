@@ -159,47 +159,47 @@ Structured SQL queries were written to:
 
 ### 5.1 KPI Summary
 
-**5.1.1 Total Loan Applications**
+- **5.1.1 Total Loan Applications**
 ```sql
 SELECT COUNT(id) AS Total_Applications 
 FROM bank.loan_data;
 ```
 
-**5.1.2 MTD Loan Applications**
+- **5.1.2 MTD Loan Applications**
 ```sql
 SELECT COUNT(id) AS Total_Applications 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 12;
 ```
 
-**5.1.3. PMTD Loan Applications**
+- **5.1.3. PMTD Loan Applications**
 ```sql
 SELECT COUNT(id) AS Total_Applications 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 11;
 ```
 
-**5.1.4. Total Funded Amount**
+- **5.1.4. Total Funded Amount**
 ```sql
 SELECT SUM(loan_amount) AS Total_Funded_Amount 
 FROM bank.loan_data;
 ```
 
-**5.1.5. MTD Funded Amount**
+- **5.1.5. MTD Funded Amount**
 ```sql
 SELECT SUM(loan_amount) AS Total_Funded_Amount 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 12;
 ```
 
-**5.1.6. PMTD Funded Amount**
+- **5.1.6. PMTD Funded Amount**
 ```sql
 SELECT SUM(loan_amount) AS Total_Funded_Amount 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 11;
 ```
 
-**5.1.7. Total Amount Received**
+- **5.1.7. Total Amount Received**
 ```sql
 SELECT SUM(total_payment) AS Total_Amount_Collected 
 FROM bank.loan_data;
@@ -209,27 +209,27 @@ FROM bank.loan_data;
 
 ### 5.2. Interest Rate & DTI Metrics
 
-**5.2.1. Average Interest Rate**
+- **5.2.1. Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS Avg_Int_Rate 
 FROM bank.loan_data;
 ```
 
-**5.2.2. MTD Average Interest Rate**
+- **5.2.2. MTD Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS MTD_Avg_Int_Rate 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 12;
 ```
 
-**5.2.3. PMTD Average Interest Rate**
+- **5.2.3. PMTD Average Interest Rate**
 ```sql
 SELECT AVG(int_rate)*100 AS PMTD_Avg_Int_Rate 
 FROM bank.loan_data
 WHERE MONTH(issue_date) = 11;
 ```
 
-**5.2.4. Average DTI**
+- **5.2.4. Average DTI**
 ```sql
 SELECT AVG(dti)*100 AS Avg_DTI 
 FROM bank.loan_data;
@@ -239,7 +239,7 @@ FROM bank.loan_data;
 
 ### 5.3. Loan Quality Breakdown
 
-**5.3.1. Good Loan Percentage**
+- **5.3.1. Good Loan Percentage**
 ```sql
 SELECT
     (COUNT(CASE WHEN loan_status = 'Fully Paid' OR loan_status = 'Current' THEN id END) * 100.0) / 
@@ -247,7 +247,7 @@ SELECT
 FROM bank.loan_data;
 ```
 
-**5.3.2. Bad Loan Percentage**
+- **5.3.2. Bad Loan Percentage**
 ```sql
 SELECT
     (COUNT(CASE WHEN loan_status = 'Charged Off' THEN id END) * 100.0) / 
@@ -257,7 +257,7 @@ FROM bank.loan_data;
 
 ---
 
-**5.3.3. Loan Status Summary**
+- **5.3.3. Loan Status Summary**
 ```sql
 SELECT
     loan_status,
@@ -289,7 +289,7 @@ ORDER BY MONTH(issue_date);
 
 ### 5.5. Loan Breakdown by Attributes
 
-**5.5.1. By State**
+- **5.5.1. By State**
 ```sql
 SELECT 
     address_state AS State, 
@@ -301,7 +301,7 @@ GROUP BY address_state
 ORDER BY address_state;
 ```
 
-**5.5.2. By Term**
+- **5.5.2. By Term**
 ```sql
 SELECT 
     term AS Term, 
@@ -313,7 +313,7 @@ GROUP BY term
 ORDER BY term;
 ```
 
-**5.5.3.By Employment Length**
+- **5.5.3.By Employment Length**
 ```sql
 SELECT 
     emp_length AS Employee_Length, 
@@ -325,7 +325,7 @@ GROUP BY emp_length
 ORDER BY emp_length;
 ```
 
-**5.5.4. By Purpose**
+- **5.5.4. By Purpose**
 ```sql
 SELECT 
     purpose AS PURPOSE, 
@@ -337,7 +337,7 @@ GROUP BY purpose
 ORDER BY purpose;
 ```
 
-**5.5.5. By Home Ownership**
+- **5.5.5. By Home Ownership**
 ```sql
 SELECT 
     home_ownership AS HomeOwnership, 
