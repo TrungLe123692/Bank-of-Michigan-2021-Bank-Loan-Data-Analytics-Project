@@ -15,6 +15,15 @@ Designed for **data analyst and data engineering roles**, this project applies c
 
 ---
 
+## 📂 Resources
+
+- SQL Script: [Bank Loan Data Analytics SQL Script](https://github.com/TrungLe123692/Bank-of-Michigan-2021-Bank-Loan-Data-Analytics-Project/blob/main/Bank%20of%20Michigan%20Loan%20Analytcis%20Project%20SQL%20Script.sql)
+- Tableau Dashboard: [Bank Loan Dashboard](https://public.tableau.com/app/profile/trung.le6260/viz/BankLoanWorkbook_Incomplete/Overview)
+- Dataset Source: [Bank Loan Dataset](https://github.com/TrungLe123692/Bank-of-Michigan-2021-Bank-Loan-Data-Analytics-Project/blob/main/Bank%20of%20Michigan%20Bank%20Loan%20Data.csv)
+- SQL Report: [SQL Script Report](https://github.com/TrungLe123692/Bank-of-Michigan-2021-Bank-Loan-Data-Analytics-Project/blob/main/Bank%20Loan%20Data%20Analytics_SQL%20Queries.pdf)
+
+---
+
 ## 2. Business Objectives
 
 ### 2.1. Business Problem
@@ -37,7 +46,7 @@ As a financial institution, Bank of Michigan seeks to better understand the perf
 
 ---
 
-## 3. Dataset & Schema
+## 3. About the Data and Structure 
 
 The dataset includes loan applications from 2021, with **14 columns and 38,000+ rows**. Each row represents a unique loan application with borrower details and financial metrics.
 
@@ -60,6 +69,10 @@ The dataset includes loan applications from 2021, with **14 columns and 38,000+ 
 | `emp_length`     | Employment length of the borrower                 |
 | `purpose`        | Purpose of the loan (e.g., credit card, home)     |
 | `home_ownership` | Type of home ownership (e.g., Rent, Mortgage)     |
+
+[Project Structure](https://github.com/TrungLe123692/Bank-of-Michigan-2021-Bank-Loan-Data-Analytics-Project/blob/main/Bank%20of%20Michigan%20Bank%20Loan%20Data.csv)
+
+<img width="532" height="407" alt="Screenshot 2025-08-10 154050" src="https://github.com/user-attachments/assets/63745a90-21e4-4fe9-8b24-5d8862fad59d" />
 
 ---
 
