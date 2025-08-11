@@ -5,13 +5,13 @@
 
 ## 1. Project Overview
 
-This project analyzes over **38,000 loan applications** from the Bank of Michigan to evaluate approval trends, repayment patterns, and loan quality. The end-to-end workflow includes:
+- **This project analyzes over **38,000 loan applications** from the Bank of Michigan to evaluate approval trends, repayment patterns, and loan quality. The end-to-end workflow includes:**
 
-- **Data ingestion and cleaning** in SQL and Excel  
-- **Transformation and metric calculation** via structured SQL queries  
-- **Interactive dashboards** built with Tableau for business decision-makers
+   - Data ingestion and cleaning** in SQL and Excel  
+   - Transformation and metric calculation** via structured SQL queries  
+   - Interactive dashboards** built with Tableau for business decision-makers
 
-Designed for **data analyst and data engineering roles**, this project applies core **ETL principles**, such as filtering, aggregating, and classifying large financial datasets for insights and decision-making.
+- **Designed for **data analyst and data engineering roles**, this project applies core **ETL principles**, such as filtering, aggregating, and classifying large financial datasets for insights and decision-making.**
 
 ---
 
@@ -30,19 +30,19 @@ Designed for **data analyst and data engineering roles**, this project applies c
 
 As a financial institution, Bank of Michigan seeks to better understand the performance of its loan portfolio. The goal is to reduce credit risk, allocate capital effectively, and identify customer trends.
 
-**Key business questions:**
+- **Key business questions:**
 
-- What percentage of loans are high-risk (“Charged Off”)?
-- Which states or borrower profiles yield the healthiest returns?
-- How do debt-to-income (DTI) and interest rates impact loan quality?
-- What loan purposes or terms are most common and profitable?
+  - What percentage of loans are high-risk (“Charged Off”)?
+  - Which states or borrower profiles yield the healthiest returns?
+  - How do debt-to-income (DTI) and interest rates impact loan quality?
+  - What loan purposes or terms are most common and profitable?
 
 ### 2.2. Business Impact
 
-- Enhanced risk segmentation using DTI and loan verification status  
-- Identification of underperforming loan types and geographies  
-- Support for smarter product design, loan term offerings, and targeting  
-- Clear visualization of monthly trends to guide underwriting strategies
+  - Enhanced risk segmentation using DTI and loan verification status  
+  - Identification of underperforming loan types and geographies  
+  - Support for smarter product design, loan term offerings, and targeting  
+  - Clear visualization of monthly trends to guide underwriting strategies
 
 ---
 
@@ -430,9 +430,7 @@ ORDER BY home_ownership;
 - **Interactive Filters (State, Term, Grade, Year):**  
   Let users drill down to specific borrower segments and time periods for focused analysis.
 
-  ## 📈 View the Interactive Dashboard
-
-[![View in Tableau Public](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/app/profile/trung.le6260/viz/BankLoanWorkbook_Incomplete/Overview)
 
 👉 **[Click here to explore the live Tableau dashboard](https://public.tableau.com/app/profile/trung.le6260/viz/BankLoanWorkbook_Incomplete/Overview)**  
+
 This dashboard visualizes key loan metrics such as default rates, average loan amounts, and risk segmentation by state, credit grade, and term. Interactive filters and KPI cards allow users to dynamically explore the portfolio from multiple perspectives.
