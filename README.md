@@ -72,8 +72,45 @@ The dataset includes loan applications from 2021, with **14 columns and 38,000+ 
 
 [Project Structure](https://github.com/TrungLe123692/Bank-of-Michigan-2021-Bank-Loan-Data-Analytics-Project/blob/main/Bank%20of%20Michigan%20Bank%20Loan%20Data.csv)
 
-<img width="532" height="407" alt="Screenshot 2025-08-10 154050" src="https://github.com/user-attachments/assets/63745a90-21e4-4fe9-8b24-5d8862fad59d" />
-
+```
+movie-financial-success-analysis/
+│
+├── data/
+│   ├── imdb_movies_dataset.csv                
+│   └── README_data.md                         
+│
+├── notebooks/
+│   ├── Movie_Financial_Success_Analysis.ipynb 
+│   └── Experimental_Analysis.ipynb            
+│
+├── scripts/
+│   ├── correlation_regression_analysis.py     
+│   ├── data_preprocessing.py                  
+│   └── feature_engineering.py                  
+│
+├── visuals/
+│   ├── budget_vs_gross_regression.png          
+│   ├── score_vs_gross_regression.png           
+│   ├── correlation_heatmap_pearson.png         
+│   ├── correlation_heatmap_spearman.png       
+│   ├── boxplot_gross_outliers.png              
+│   ├── top_production_companies.png            
+│   └── visuals_readme.md                       
+│
+├── output/
+│   ├── Movie_Financial_Success_Report.pdf      
+│   ├── model_results_summary.csv               
+│   └── key_findings.txt                      
+│
+├── docs/
+│   ├── methodology.md                         
+│   └── references.md                           
+│
+├── README.md                                  
+├── LICENSE                                    
+├── .gitignore                               
+└── requirements.txt     
+```
 ---
 
 ## 4. Data Architecture Overview
